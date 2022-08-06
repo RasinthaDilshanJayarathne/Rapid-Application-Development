@@ -21,6 +21,30 @@ export const styleSheet ={
     bodyContainer:{
         width:'100vw',
         height:'90vh',
-        //backgroundColor:'red'
+        display: 'flex',
+        flexWrap: 'wrap',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    cardBodyContainer:{
+        width:'50vw',
+        height:'90vh',
+        //border:'1px solid red',
+        display: 'flex',
+        flexWrap: 'wrap',
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    card:{
+        width:'40vw',
+        height:'40vh',
+        //border:'1px solid red',
+        display: 'flex',
+        flexWrap: 'wrap',
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'center',
     }
 }
