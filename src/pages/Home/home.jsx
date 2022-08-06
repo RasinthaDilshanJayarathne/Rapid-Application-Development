@@ -13,7 +13,8 @@ class Home extends Component{
         return(
             <>
                  <Grid className={classes.container}>
-
+                    <Grid className={classes.navBar}></Grid>
+                    <Grid className={classes.bodyContainer}></Grid>
                 </Grid>
             </>
         )
