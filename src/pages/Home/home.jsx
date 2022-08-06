@@ -27,45 +27,15 @@ class Home extends Component {
                     <Grid className={classes.bodyContainer}>
                         <Grid className={classes.cardBodyContainer}>
                             <Grid className={classes.card}>
-                                <Card style={{ maxWidth: '500px', maxHeight: '400px'}}>
-                                    <CardContent>
-                                        <Typography gutterBottom variant="h5" component="div">
-                                            Lizard
-                                        </Typography>
-                                        <Typography variant="body2" color="text.secondary">
-                                            Lizards are a widespread group of squamate reptiles, with over 6,000
-                                            species, ranging across all continents except Antarctica
-                                        </Typography>
-                                    </CardContent>
-                                </Card>
+                                <Grid style={{ border: '1px solidred' }}></Grid>
                             </Grid>
                             <Grid className={classes.card}>
-                            <Card style={{ maxWidth: '500px', maxHeight: '400px'}}>
-                                    <CardContent>
-                                        <Typography gutterBottom variant="h5" component="div">
-                                            Lizard
-                                        </Typography>
-                                        <Typography variant="body2" color="text.secondary">
-                                            Lizards are a widespread group of squamate reptiles, with over 6,000
-                                            species, ranging across all continents except Antarctica
-                                        </Typography>
-                                    </CardContent>
-                                </Card>
+
                             </Grid>
                         </Grid>
                         <Grid className={classes.cardBodyContainer}>
                             <Grid className={classes.card}>
-                            <Card style={{ maxWidth: '500px', maxHeight: '400px'}}>
-                                    <CardContent>
-                                        <Typography gutterBottom variant="h5" component="div">
-                                            Lizard
-                                        </Typography>
-                                        <Typography variant="body2" color="text.secondary">
-                                            Lizards are a widespread group of squamate reptiles, with over 6,000
-                                            species, ranging across all continents except Antarctica
-                                        </Typography>
-                                    </CardContent>
-                                </Card>
+
                             </Grid>
                             <Grid className={classes.card}></Grid>
                         </Grid>
