@@ -42,7 +42,7 @@ export default class ResponsiveAppBar extends Component {
         },
         {
             text: 'Log out',
-            to: '/logout'
+            to: '/login'
         }
     ]
 

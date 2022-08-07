@@ -15,12 +15,13 @@ function App() {
     // </Fragment>
 
     <Routes>
+      {/* <Route path="/login" element={<Login />}></Route> */}
       <Route path="/" element={<ResponsiveAppBar />}>
         <Route index element={<Home />} />
         <Route path="product" element={<Product />} />
         <Route path="cart" element={<Cart />} />
-        {/* <Route path="register" element={<UserRegistration />} />
-        <Route path="logIn" element={<LogIn />} /> */}
+        {/* <Route path="register" element={<UserRegistration />} /> */}
+        <Route path="login" element={<Login />} />
       </Route>
     </Routes>
 
