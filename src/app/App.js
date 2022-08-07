@@ -1,12 +1,14 @@
 import Home from "../pages/Home/home";
 import { Fragment } from 'react';
 import Login from "../pages/Login/login";
+import Product from "../pages/Product/product";
 
 function App() {
   return (
     <Fragment>
       {/* <Login /> */}
-      <Home/>
+      {/* <Home/> */}
+      <Product/>
     </Fragment>
   );
 }
