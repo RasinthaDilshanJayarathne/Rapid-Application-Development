@@ -5,7 +5,8 @@ import Login from "../pages/Login/login";
 function App() {
   return (
     <Fragment>
-      <Login />
+      {/* <Login /> */}
+      <Home/>
     </Fragment>
   );
 }

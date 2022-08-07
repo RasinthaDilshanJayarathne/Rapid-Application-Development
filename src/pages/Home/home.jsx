@@ -27,15 +27,15 @@ class Home extends Component {
                     <Grid className={classes.bodyContainer}>
                         <Grid className={classes.cardBodyContainer}>
                             <Grid className={classes.card}>
-                                <Grid style={{ border: '1px solidred' }}></Grid>
+                                <Grid style={{ width: '25vw', height: '35vh', backgroundColor: '#999393', }}></Grid>
                             </Grid>
                             <Grid className={classes.card}>
-
+                                <Grid style={{ width: '25vw', height: '35vh', backgroundColor: '#999393', }}></Grid>
                             </Grid>
                         </Grid>
                         <Grid className={classes.cardBodyContainer}>
                             <Grid className={classes.card}>
-
+                                <Grid style={{ width: '25vw', height: '35vh', backgroundColor: '#999393', }}></Grid>
                             </Grid>
                             <Grid className={classes.card}></Grid>
                         </Grid>
