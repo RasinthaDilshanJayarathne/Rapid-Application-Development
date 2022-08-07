@@ -18,14 +18,14 @@ class Login extends Component {
                             <Typography variant="h4" gutterBottom component="div">Login</Typography>
                         </Grid>
                         <Grid className={classes.loginFields}>
-                            <TextField id="outlined-basic" label="User Name" variant="outlined" style={{ width: '500px', marginTop: '100px', backgroundColor: '#D9D9D9' }} />
+                            <TextField id="outlined-basic" label="User Name" variant="outlined" style={{ width: '500px', marginTop: '30px', backgroundColor: '#D9D9D9' }} />
                             <TextField id="outlined-basic" label="Password" variant="outlined" type="password" style={{ width: '500px', backgroundColor: '#D9D9D9' }} />
                         </Grid>
                         <Grid className={classes.loginButton}>
                             <Button style={{ width: '150px', backgroundColor: '#7C8DEA', color: 'black' }}>Login</Button>
                         </Grid>
                         <Grid className={classes.loginClickHere}>
-                            <Typography variant="h6" gutterBottom component="div">Create new user account?Click here</Typography>
+                            <Typography variant="h6" gutterBottom component="div" style={{marginLeft:'-170px'}}>Create new user account?<span>Click here</span></Typography>
                         </Grid>
                     </Grid>
                 </Grid>

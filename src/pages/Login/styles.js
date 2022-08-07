@@ -21,23 +21,22 @@ export const styleSheet = {
     },
     loginHeader:{
         width:'40vw',
-        height:'10vh',
+        height:'20vh',
         display: 'flex',
         flexWrap: 'wrap',
         flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'center',
-        border:'1px solid red',
+       
     },
     loginFields:{
         width:'40vw',
-        height:'40vh',
+        height:'30vh',
         display: 'flex',
         flexWrap: 'wrap',
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'center',
-        border:'1px solid red',
     },
     loginButton:{
         width:'40vw',
@@ -47,7 +46,7 @@ export const styleSheet = {
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'center',
-        border:'1px solid red',
+        
     },
     loginClickHere:{
         width:'40vw',
@@ -56,7 +55,6 @@ export const styleSheet = {
         flexWrap: 'wrap',
         flexDirection: 'row',
         alignItems: 'center',
-        justifyContent: 'center',
-        border:'1px solid red',
+        justifyContent: 'center',  
     }
 }
