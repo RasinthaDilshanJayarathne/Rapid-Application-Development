@@ -16,14 +16,6 @@ class Home extends Component {
         return (
             <>
                 <Grid className={classes.container}>
-                    <Grid className={classes.navBar}>
-                        <Button style={{ width: '150px', backgroundColor: '#D9D9D9', color: 'black', marginLeft: '40px', border: '1px solid black' }}>Dashboard</Button>
-                        <Button style={{ width: '150px', backgroundColor: '#D9D9D9', color: 'black', marginLeft: '450px', border: '1px solid black' }}>Product</Button>
-                        <Button style={{ width: '100px', backgroundColor: '#D9D9D9', color: 'black', marginLeft: '50px', border: '1px solid black' }}>cart</Button>
-                        <Typography variant="h4" gutterBottom component="div" style={{ marginLeft: '350px', marginTop: '10px' }}>
-                            Rasintha
-                        </Typography>
-                    </Grid>
                     <Grid className={classes.bodyContainer}>
                         <Grid className={classes.cardBodyContainer}>
                             <Grid className={classes.card}>

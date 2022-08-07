@@ -1,12 +1,13 @@
 export const styleSheet ={
     container:{
         width:'100vw',
-        height:'100vh',
+        //height:'100vh',
         display: 'flex',
         flexWrap: 'wrap',
         flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'center',
+        //backgroundColor:'red'
     },
     navBar:{
         width:'100vw',
