@@ -3,63 +3,167 @@ import { Component } from "react";
 import { styleSheet } from "./styles";
 import { Button, Grid, TextField, Typography, } from "@mui/material";
 import Autocomplete from '@mui/material/Autocomplete';
+import { TextValidator, ValidatorForm } from "react-material-ui-form-validator";
+import PersonIcon from '@mui/icons-material/Person';
 
-const top100Films = [
-    { label: 'The Shawshank Redemption', year: 1994 },
-    { label: 'The Godfather', year: 1972 },
-    { label: 'The Godfather: Part II', year: 1974 },
-]
 
 class Product extends Component {
     constructor(props) {
         super(props)
+        this.state = {
+            categoryTypes: [
+                {
+                    type: 'Small'
+                },
+                {
+                    type: 'Medium'
+                },
+                {
+                    type: 'Large'
+                }
+            ],
+        }
     }
 
     render() {
         const { classes } = this.props;
         return (
-            <Grid className={classes.container}>
-                <Grid className={classes.header}>
-                    <Typography variant="h4" gutterBottom component="div" style={{ marginTop: '10px', marginLeft: '150px' }}>Product Manage</Typography>
-                </Grid>
-                <Grid className={classes.bodyContainer}>
-                    <Grid className={classes.fieldContainer}>
-                        <Grid className={classes.fieldFields}>
-                            <TextField
-                                style={{ width: '500px', marginTop: '-30px', backgroundColor: '#FAF3F3' }}
-                                id="outlined-basic"
-                                label="Title"
-                                variant="outlined"
+            <>
+                <ValidatorForm ref="form" className="pt-2">
+                    <Grid className={classes.product_container}>
+                        <Grid container className="pt-2" spacing={2}>
+                            <Grid item lg={12} xs={12} sm={12} md={12}
+                                style={{
+                                    alignItems: 'center',
+                                    display: 'flex',
+                                    flexWrap: 'wrap',
+                                    justifyContent: 'center',
+                                    backgroundColor: '#fffff',
+                                }}>
+                                <Typography variant="h4" style={{ margin: '20px 0 60px 0', color: 'black', }}>Product
+                                    Manage</Typography>
+                            </Grid>
+                            <Grid width="100%" container direction="row" justifyContent="center" alignItems="center">
+                                <Grid item xs={12} sm={12} md={12} lg={6} style={{ margin: '20px 0 10px 0' }} container
+                                    justifyContent="center" alignItems="center">
+                                    <TextValidator
+                                        id="outlinedbasic"
+                                        //placeholder="D00-001"
+                                        variant="outlined"
+                                        size="small"
+                                        style={{ width: '40vw' }}
+                                        label="Title"
+                                        // value={this.state.formData.id}
+                                        // onChange={(e) => {
+                                        //     let formData = this.state.formData
+                                        //     formData.id = e.target.value
+                                        //     this.setState({formData})
+                                        // }}
+                                        validators={['required']}
+                                    />
+                                </Grid>
+                                <Grid item xs={12} sm={12} md={12} lg={6} style={{ margin: '20px 0 10px 0' }} container
+                                    justifyContent="center" alignItems="center"
+                                >
+                                    <TextValidator
+                                        id="outlinedbasic"
+                                        //placeholder="D00-001"
+                                        variant="outlined"
+                                        size="small"
+                                        style={{ width: '40vw' }}
+                                        label="Price"
+                                        // value={this.state.formData.id}
+                                        // onChange={(e) => {
+                                        //     let formData = this.state.formData
+                                        //     formData.id = e.target.value
+                                        //     this.setState({formData})
+                                        // }}
+                                        validators={['required']}
+                                    />
+                                </Grid>
+                            </Grid>
+                            <Grid width="100%" container direction="row" justifyContent="space-evenly"
+                                alignItems="center">
+                                <Grid item xs={12} sm={12} md={12} lg={6} style={{ margin: '30px 0 40px 0' }} container
+                                    justifyContent="center" alignItems="center"
+                                >
+                                    <Autocomplete
+                                        // onChange={(e, value, r) => {
+                                        //
+                                        //     let formData = this.state.formData
+                                        //     formData.fuelType = value.type
+                                        //     this.setState({formData})
+                                        //
+                                        // }}
+                                        getOptionLabel={
+                                            (option) => option.type
+                                        }
+                                        style={{ width: '40vw' }}
+                                        id="controllable-states-demo"
+                                        options={this.state.categoryTypes}
+                                        size="small"
+                                        renderInput={(params) => <TextField {...params} label="Category" />}
+                                    />
+                                </Grid>
+                                <Grid item xs={12} sm={12} md={12} lg={6} style={{ margin: '30px 0 40px 0' }} container
+                                    justifyContent="center" alignItems="center"
+                                >
+                                    <TextValidator
 
-                            />
-                            <Autocomplete
-                                style={{ width: '500px', marginTop: '-380px', backgroundColor: '#FAF3F3' }}
-                                disablePortal
-                                id="combo-box-demo"
-                                options={top100Films}
-                                sx={{ width: 300 }}
-                                renderInput={(params) => <TextField {...params} label="Categary" />}
-                            />
-                        </Grid>
-                        <Grid className={classes.fieldFields}>
-                            <TextField
-                                style={{ width: '500px', marginTop: '-30px', backgroundColor: '#FAF3F3' }}
-                                id="outlined-basic"
-                                label="Price"
-                                variant="outlined"
-                            />
-                            <TextField
-                                style={{ width: '500px', marginTop: '-350px', backgroundColor: '#FAF3F3' }}
-                                id="outlined-multiline-static"
-                                label="Multiline"
-                                multiline
-                                rows={4}
-                                defaultValue="Default Value"
-                            />
+                                        id="outlined-multiline-flexible"
+                                        //placeholder="D00-001"
+                                        variant="outlined"
+                                        multiline
+                                        maxRows={4}
+                                        style={{ width: '40vw' }}
+                                        label="Description"
+                                        // value={this.state.formData.id}
+                                        // onChange={(e) => {
+                                        //     let formData = this.state.formData
+                                        //     formData.id = e.target.value
+                                        //     this.setState({formData})
+                                        // }}
+                                        validators={['required']}
+                                    />
+                                </Grid>
+                            </Grid>
+                            <Grid width="100%" container direction="row" justifyContent="flex-start" alignItems="center">
+                                <div className={classes.img_div}>
+                                    <PersonIcon style={{ color: 'D9D9D9', fontSize: '180px' }} />
+                                </div>
+                                <div><input
+
+                                    style={{ display: 'none' }}
+                                    accept="image/*"
+                                    className={classes.input}
+                                    id="contained-button-file01"
+                                    multiple
+                                    type="file"
+                                // onChange={(e) => {
+                                //     this.setState({
+                                //         frontImage: e.target.files[0],
+                                //         frontView : URL.createObjectURL(e.target.files[0])
+                                //     })
+                                // }}
+                                />
+                                    <label htmlFor="contained-button-file01">
+                                        <Button variant="contained" size="small" component="span"
+                                            style={{ margin: '40px 0 0 20px', backgroundColor: 'white', color: 'black' }}
+                                        >
+                                            Choose Image
+                                        </Button>
+                                    </label>
+
+                                </div>
+                            </Grid>
+                            <Grid width="100%" container direction="row" justifyContent="flex-end" alignItems="flex-end">
+                                <Button variant="contained" color="error" style={{ margin: '20px 0 30px 0', width: '120px' }}>Clear</Button>
+                                <Button variant="contained" style={{ margin: '20px 60px 30px 20px', width: '120px' }}>Save</Button>
+                            </Grid>
                         </Grid>
                     </Grid>
-                </Grid>
-            </Grid>
+                </ValidatorForm>
+            </>
         )
     }
 }
