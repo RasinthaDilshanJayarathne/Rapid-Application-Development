@@ -65,7 +65,7 @@ class Product extends Component {
                 severity: 'success',
             });
             this.clearFields();
-            this.loadData();
+            //this.loadData();
         } else {
             this.setState({
                 alert: true,
@@ -97,6 +97,18 @@ class Product extends Component {
                 severity: 'error'
             });
         }
+    };
+
+    clearFields = () => {
+        this.setState({
+            productData: {
+                title: '',
+                price: '',
+                description: '',
+                image: '',
+                category: ''
+            },
+        });
     };
 
     render() {
