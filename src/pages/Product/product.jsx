@@ -134,7 +134,7 @@ class Product extends Component {
                 data: res.data.data
             });
         }
-        console.log(this.state.data)    // print customers array
+        console.log(this.state.data)
 
     };
 
