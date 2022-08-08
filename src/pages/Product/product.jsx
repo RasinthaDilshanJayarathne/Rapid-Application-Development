@@ -8,7 +8,6 @@ import PersonIcon from '@mui/icons-material/Person';
 import ProductService from '../Service/Product'
 import GDSESnackBar from "../../common/SnakBar/index";
 
-
 class Product extends Component {
     constructor(props) {
         super(props)
@@ -42,6 +41,7 @@ class Product extends Component {
         }
     }
 
+    //Load All Data
     loadData = async () => {
         let res = await ProductService.fetchProduct();
 
@@ -54,6 +54,7 @@ class Product extends Component {
 
     };
 
+    //Data Add
     submitProduct = async () => {
         let formData = this.state.productData;
 
@@ -76,9 +77,10 @@ class Product extends Component {
 
     };
 
-    deleteProduct = async (title) => {
+    //Data Delete
+    deleteProduct = async (id) => {
         let params = {
-            title: title
+            id: id
         }
         let res = await ProductService.deleteProduct(params);
         console.log(res)
@@ -97,6 +99,43 @@ class Product extends Component {
                 severity: 'error'
             });
         }
+    };
+
+    //Get A Single Product
+    getAsingleProduct = async (id) => {
+        let params = {
+            id: id
+        }
+        let res = await ProductService.fetchAsingleProduct(params);
+        console.log(res)
+
+        if (res.status === 200) {
+            this.setState({
+                alert: true,
+                message: res.data.message,
+                severity: 'success'
+            });
+            //this.loadData();
+        } else {
+            this.setState({
+                alert: true,
+                message: res.data.message,
+                severity: 'error'
+            });
+        }
+    };
+
+    //Get Product Categories
+    getAllProductCategories = async () => {
+        let res = await ProductService.fetchLimitGetAllProducts();
+
+        if (res.status === 200) {
+            this.setState({
+                data: res.data.data
+            });
+        }
+        console.log(this.state.data)    // print customers array
+
     };
 
     clearFields = () => {
