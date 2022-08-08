@@ -101,6 +101,21 @@ class Product extends Component {
         }
     };
 
+    //Update
+    updateProduct = (data) => {
+        console.log(data)
+
+        this.setState({
+            productData: {
+                title: data.title,
+                price: data.price,
+                description: data.description,
+                image: data.image,
+                category: data.category
+            },
+        });
+    };
+
     //Get A Single Product
     getAsingleProduct = async (id) => {
         let params = {

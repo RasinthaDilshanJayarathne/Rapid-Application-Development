@@ -74,7 +74,7 @@ class User extends Component {
                 message: 'User Successfully Added',
                 severity: 'success',
             });
-            //this.clearFields();
+            this.clearFields();
             //this.loadData();
         } else {
             this.setState({
@@ -83,7 +83,91 @@ class User extends Component {
                 severity: 'error'
             });
         }
+    };
 
+    //Data Delete
+    deleteUser = async (id) => {
+        let params = {
+            id: id
+        }
+        let res = await userService.deleteUser(params);
+        console.log(res)
+
+        if (res.status === 200) {
+            this.setState({
+                alert: true,
+                message: res.data.message,
+                severity: 'success'
+            });
+            //this.loadData();
+        } else {
+            this.setState({
+                alert: true,
+                message: res.data.message,
+                severity: 'error'
+            });
+        }
+    };
+
+    //Get A Single User
+    getAsingleUser = async (id) => {
+        let params = {
+            id: id
+        }
+        let res = await userService.fetchAsingleUser(params);
+        console.log(res)
+
+        if (res.status === 200) {
+            this.setState({
+                alert: true,
+                message: res.data.message,
+                severity: 'success'
+            });
+            //this.loadData();
+        } else {
+            this.setState({
+                alert: true,
+                message: res.data.message,
+                severity: 'error'
+            });
+        }
+    };
+
+    getAllUser = async () => {
+        let res = await userService.fetchLimitGetAllUser();
+
+        if (res.status === 200) {
+            this.setState({
+                data: res.data.data
+            });
+        }
+        console.log(this.state.data)
+
+    };
+
+    clearFields = () => {
+        this.setState({
+            userData: {
+                email: '',
+                username: '',
+                password: '',
+                name: {
+                    firstname: '',
+                    lastname: ''
+                },
+                address: {
+                    city: '',
+                    street: '',
+                    number: '',
+                    zipcode: '',
+                    geolocation: {
+                        lat: '',
+                        long: ''
+                    }
+                },
+                phone: ''
+            },
+        });
     };
 
     render() {
@@ -118,7 +202,7 @@ class User extends Component {
                                         onChange={(e) => {
                                             let formData = this.state.userData
                                             formData.name.firstname = e.target.value
-                                            this.setState({formData})
+                                            this.setState({ formData })
                                         }}
                                         validators={['required']}
                                     />
@@ -135,7 +219,7 @@ class User extends Component {
                                         onChange={(e) => {
                                             let formData = this.state.userData
                                             formData.name.lastname = e.target.value
-                                            this.setState({formData})
+                                            this.setState({ formData })
                                         }}
                                         validators={['required']}
                                     />
@@ -154,7 +238,7 @@ class User extends Component {
                                         onChange={(e) => {
                                             let formData = this.state.userData
                                             formData.email = e.target.value
-                                            this.setState({formData})
+                                            this.setState({ formData })
                                         }}
                                         validators={['required']}
                                     />
@@ -173,7 +257,7 @@ class User extends Component {
                                         onChange={(e) => {
                                             let formData = this.state.userData
                                             formData.username = e.target.value
-                                            this.setState({formData})
+                                            this.setState({ formData })
                                         }}
                                         validators={['required']}
                                     />
@@ -192,7 +276,7 @@ class User extends Component {
                                         onChange={(e) => {
                                             let formData = this.state.userData
                                             formData.password = e.target.value
-                                            this.setState({formData})
+                                            this.setState({ formData })
                                         }}
                                         validators={['required']}
                                     />
@@ -211,7 +295,7 @@ class User extends Component {
                                         onChange={(e) => {
                                             let formData = this.state.userData
                                             formData.address.city = e.target.value
-                                            this.setState({formData})
+                                            this.setState({ formData })
                                         }}
                                         validators={['required']}
                                     />
@@ -230,7 +314,7 @@ class User extends Component {
                                         onChange={(e) => {
                                             let formData = this.state.userData
                                             formData.address.street = e.target.value
-                                            this.setState({formData})
+                                            this.setState({ formData })
                                         }}
                                         validators={['required']}
                                     />
@@ -249,7 +333,7 @@ class User extends Component {
                                         onChange={(e) => {
                                             let formData = this.state.userData
                                             formData.address.number = e.target.value
-                                            this.setState({formData})
+                                            this.setState({ formData })
                                         }}
                                         validators={['required']}
                                     />
@@ -268,7 +352,7 @@ class User extends Component {
                                         onChange={(e) => {
                                             let formData = this.state.userData
                                             formData.address.zipcode = e.target.value
-                                            this.setState({formData})
+                                            this.setState({ formData })
                                         }}
                                         validators={['required']}
                                     />
@@ -287,7 +371,7 @@ class User extends Component {
                                         onChange={(e) => {
                                             let formData = this.state.userData
                                             formData.address.geolocation.lat = e.target.value
-                                            this.setState({formData})
+                                            this.setState({ formData })
                                         }}
                                         validators={['required']}
                                     />
@@ -306,7 +390,7 @@ class User extends Component {
                                         onChange={(e) => {
                                             let formData = this.state.userData
                                             formData.address.geolocation.long = e.target.value
-                                            this.setState({formData})
+                                            this.setState({ formData })
                                         }}
                                         validators={['required']}
                                     />
@@ -325,15 +409,20 @@ class User extends Component {
                                         onChange={(e) => {
                                             let formData = this.state.userData
                                             formData.phone = e.target.value
-                                            this.setState({formData})
+                                            this.setState({ formData })
                                         }}
                                         validators={['required']}
                                     />
                                 </Grid>
                             </Grid>
                             <Grid width="100%" container direction="row" justifyContent="flex-end" alignItems="flex-end" style={{ height: '20vh' }}>
-                                <Button variant="contained" color="error"
-                                    style={{ margin: '20px 0 100px 0', width: '120px' }}>Clear</Button>
+                                <Button variant="contained"
+                                    color="error"
+                                    style={{ margin: '20px 0 100px 0', width: '120px' }}
+                                    onClick={() => {
+                                        this.clearFields();
+                                    }}
+                                >Clear</Button>
                                 <Button
                                     variant="contained"
                                     style={{ margin: '20px 60px 100px 20px', width: '120px' }}
@@ -383,19 +472,19 @@ class User extends Component {
                                             <TableCell align="left">
                                                 <Tooltip title="Edit">
                                                     <IconButton
-                                                    onClick={() => {
-                                                        //this.updateVehicle(row);
-                                                        
-                                                    }}
+                                                        onClick={() => {
+                                                            //this.updateVehicle(row);
+
+                                                        }}
                                                     >
                                                         <EditIcon color="primary" />
                                                     </IconButton>
                                                 </Tooltip>
                                                 <Tooltip title="Delete">
                                                     <IconButton
-                                                    onClick={() => {
-                                                        //this.deleteVehicle(row.vehicleId)
-                                                    }}
+                                                        onClick={() => {
+                                                            //this.deleteVehicle(row.vehicleId)
+                                                        }}
                                                     >
                                                         <DeleteIcon color="error" />
                                                     </IconButton>
@@ -407,17 +496,18 @@ class User extends Component {
                             </TableBody>
                         </Table>
                     </TableContainer>
+                    <GDSESnackBar
+                        open={this.state.alert}
+                        onClose={() => {
+                            this.setState({ alert: false })
+                        }}
+                        message={this.state.message}
+                        autoHideDuration={3000}
+                        severity={this.state.severity}
+                        variant="filled"
+                    />
                 </Grid>
-                <GDSESnackBar
-                    open={this.state.alert}
-                    onClose={() => {
-                        this.setState({ alert: false })
-                    }}
-                    message={this.state.message}
-                    autoHideDuration={3000}
-                    severity={this.state.severity}
-                    variant="filled"
-                />
+
             </>
         )
     }
