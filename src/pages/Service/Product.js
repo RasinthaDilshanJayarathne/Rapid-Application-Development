@@ -28,6 +28,47 @@ class ProductService{
         return await promise;
     };
 
+    fetchAsingleProduct= async (params) => {
+        const promise = new Promise((resolve, reject) => {
+            axios.get('products',{params:params})    
+                .then((res) => {
+                    return resolve(res)
+                })
+                .catch((err) => {
+                    return resolve(err)
+                })
+        });
+
+        return await promise;
+    };
+
+    fetchAllProductCategories = async () => {
+        const promise = new Promise((resolve, reject) => {
+            axios.get('products/categories')
+                .then((res) => {
+                    return resolve(res)
+                })
+                .catch((err) => {
+                    return resolve(err)
+                })
+        })
+        return await promise;
+    };
+
+    fetchLimitGetAllProducts= async (params) => {
+        const promise = new Promise((resolve, reject) => {
+            axios.get('products',{params:params})    
+                .then((res) => {
+                    return resolve(res)
+                })
+                .catch((err) => {
+                    return resolve(err)
+                })
+        });
+
+        return await promise;
+    };
+
     putProduct = async (data) => {
         const promise = new Promise((resolve, reject) => {
            axios.put('products', data)

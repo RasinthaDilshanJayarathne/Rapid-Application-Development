@@ -61,7 +61,7 @@ class Product extends Component {
         if (res.status === 200) {
             this.setState({
                 alert: true,
-                message: res.data.message,
+                message: 'Product Successfully Added',
                 severity: 'success',
             });
             this.clearFields();
@@ -243,7 +243,14 @@ class Product extends Component {
                                 </div>
                             </Grid>
                             <Grid width="100%" container direction="row" justifyContent="flex-end" alignItems="flex-end">
-                                <Button variant="contained" color="error" style={{ margin: '20px 0 30px 0', width: '120px' }}>Clear</Button>
+                                <Button
+                                variant="contained"
+                                color="error" 
+                                style={{ margin: '20px 0 30px 0', width: '120px' }}
+                                onClick={() => {
+                                    this.clearFields();
+                                }}
+                                >Clear</Button>
                                 <Button
                                     style={{
                                         margin: '20px 60px 30px 20px',
