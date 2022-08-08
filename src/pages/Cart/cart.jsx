@@ -62,7 +62,7 @@ class Cart extends Component {
                                 >
                                     <TextValidator
                                         id="outlinedbasic"
-                                        placeholder=""
+                                        //placeholder=""
                                         variant="outlined"
                                         size="small"
                                         style={{ width: '40vw' }}
@@ -106,7 +106,7 @@ class Cart extends Component {
                                     <TextValidator
 
                                         id="outlined-multiline-flexible"
-                                        placeholder="10"
+                                        //placeholder="10"
                                         variant="outlined"
                                         size="small"
                                         maxRows={4}

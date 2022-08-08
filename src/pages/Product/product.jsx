@@ -5,12 +5,23 @@ import { Button, Grid, TextField, Typography, } from "@mui/material";
 import Autocomplete from '@mui/material/Autocomplete';
 import { TextValidator, ValidatorForm } from "react-material-ui-form-validator";
 import PersonIcon from '@mui/icons-material/Person';
+import ProductService from '../Service/Product'
+import GDSESnackBar from "../../common/SnakBar/index";
 
 
 class Product extends Component {
     constructor(props) {
         super(props)
         this.state = {
+
+            productData: {
+                title: '',
+                price: '',
+                description: '',
+                image: '',
+                category: ''
+            },
+
             categoryTypes: [
                 {
                     type: 'Small'
@@ -22,14 +33,77 @@ class Product extends Component {
                     type: 'Large'
                 }
             ],
+
+            alert: false,
+            message: '',
+            severity: '',
+
+            data: [],
         }
     }
+
+    loadData = async () => {
+        let res = await ProductService.fetchProduct();
+
+        if (res.status === 200) {
+            this.setState({
+                data: res.data.data
+            });
+        }
+        console.log(this.state.data)    // print customers array
+
+    };
+
+    submitProduct = async () => {
+        let formData = this.state.productData;
+
+        let res = await ProductService.postProduct(formData);
+        if (res.status === 200) {
+            this.setState({
+                alert: true,
+                message: res.data.message,
+                severity: 'success',
+            });
+            this.clearFields();
+            this.loadData();
+        } else {
+            this.setState({
+                alert: true,
+                message: res.response.data.message,
+                severity: 'error'
+            });
+        }
+
+    };
+
+    deleteProduct = async (title) => {
+        let params = {
+            title: title
+        }
+        let res = await ProductService.deleteProduct(params);
+        console.log(res)
+
+        if (res.status === 200) {
+            this.setState({
+                alert: true,
+                message: res.data.message,
+                severity: 'success'
+            });
+            //this.loadData();
+        } else {
+            this.setState({
+                alert: true,
+                message: res.data.message,
+                severity: 'error'
+            });
+        }
+    };
 
     render() {
         const { classes } = this.props;
         return (
             <>
-                <ValidatorForm ref="form" className="pt-2">
+                <ValidatorForm ref="form" className="pt-2" onSubmit={this.submitProduct}>
                     <Grid className={classes.product_container}>
                         <Grid container className="pt-2" spacing={2}>
                             <Grid item lg={12} xs={12} sm={12} md={12}
@@ -53,12 +127,12 @@ class Product extends Component {
                                         size="small"
                                         style={{ width: '40vw' }}
                                         label="Title"
-                                        // value={this.state.formData.id}
-                                        // onChange={(e) => {
-                                        //     let formData = this.state.formData
-                                        //     formData.id = e.target.value
-                                        //     this.setState({formData})
-                                        // }}
+                                        value={this.state.productData.title}
+                                        onChange={(e) => {
+                                            let formData = this.state.productData
+                                            formData.title = e.target.value
+                                            this.setState({ formData })
+                                        }}
                                         validators={['required']}
                                     />
                                 </Grid>
@@ -72,12 +146,12 @@ class Product extends Component {
                                         size="small"
                                         style={{ width: '40vw' }}
                                         label="Price"
-                                        // value={this.state.formData.id}
-                                        // onChange={(e) => {
-                                        //     let formData = this.state.formData
-                                        //     formData.id = e.target.value
-                                        //     this.setState({formData})
-                                        // }}
+                                        value={this.state.productData.price}
+                                        onChange={(e) => {
+                                            let formData = this.state.productData
+                                            formData.price = e.target.value
+                                            this.setState({ formData })
+                                        }}
                                         validators={['required']}
                                     />
                                 </Grid>
@@ -117,12 +191,12 @@ class Product extends Component {
                                         maxRows={4}
                                         style={{ width: '40vw' }}
                                         label="Description"
-                                        // value={this.state.formData.id}
-                                        // onChange={(e) => {
-                                        //     let formData = this.state.formData
-                                        //     formData.id = e.target.value
-                                        //     this.setState({formData})
-                                        // }}
+                                        value={this.state.productData.description}
+                                        onChange={(e) => {
+                                            let formData = this.state.productData
+                                            formData.description = e.target.value
+                                            this.setState({ formData })
+                                        }}
                                         validators={['required']}
                                     />
                                 </Grid>
@@ -158,11 +232,29 @@ class Product extends Component {
                             </Grid>
                             <Grid width="100%" container direction="row" justifyContent="flex-end" alignItems="flex-end">
                                 <Button variant="contained" color="error" style={{ margin: '20px 0 30px 0', width: '120px' }}>Clear</Button>
-                                <Button variant="contained" style={{ margin: '20px 60px 30px 20px', width: '120px' }}>Save</Button>
+                                <Button
+                                    style={{
+                                        margin: '20px 60px 30px 20px',
+                                        width: '120px'
+                                    }}
+                                    variant="contained"
+                                    type="submit"
+
+                                >Save</Button>
                             </Grid>
                         </Grid>
                     </Grid>
                 </ValidatorForm>
+                <GDSESnackBar
+                    open={this.state.alert}
+                    onClose={() => {
+                        this.setState({ alert: false })
+                    }}
+                    message={this.state.message}
+                    autoHideDuration={3000}
+                    severity={this.state.severity}
+                    variant="filled"
+                />
             </>
         )
     }
