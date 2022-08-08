@@ -5,7 +5,7 @@ import { Button, Grid, TextField, Typography, } from "@mui/material";
 import Autocomplete from '@mui/material/Autocomplete';
 import { TextValidator, ValidatorForm } from "react-material-ui-form-validator";
 import PersonIcon from '@mui/icons-material/Person';
-import ProductService from '../Service/Product'
+import ProductService from '../Service/ProductService'
 import GDSESnackBar from "../../common/SnakBar/index";
 
 class Product extends Component {

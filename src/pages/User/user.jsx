@@ -15,7 +15,7 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import IconButton from "@mui/material/IconButton";
 import GDSESnackBar from "../../common/SnakBar/index";
-import userService from "../Service/User"
+import userService from "../Service/UserService"
 
 class User extends Component {
     constructor(props) {
