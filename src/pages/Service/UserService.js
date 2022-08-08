@@ -1,6 +1,6 @@
 import axios from "../../axios";
 
-class userService{
+class UserService{
     postUser = async (data) => {
         const promise = new Promise((resolve, reject) => {
             axios.post('users', data)  
@@ -83,4 +83,4 @@ class userService{
    };
 }
 
-export default new userService();
+export default new UserService();
