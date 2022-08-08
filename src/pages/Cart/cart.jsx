@@ -3,11 +3,24 @@ import { Component } from "react";
 import { styleSheet } from "./styles";
 import {Autocomplete, Button, Grid, TextField, Typography} from "@mui/material";
 import {TextValidator, ValidatorForm} from "react-material-ui-form-validator";
+import CartService from "../Service/CartService"
 
 class Cart extends Component {
     constructor(props) {
         super(props)
         this.state = {
+
+            cartData :{
+                userId: '',
+                date: '',
+                products: [
+                    {
+                        productId: '',
+                        quantity: ''
+                    }
+                ]
+            },
+
             userNames: [
 
             ],
@@ -17,11 +30,84 @@ class Cart extends Component {
         }
     }
 
+    loadData = async () => {
+        let res = await CartService.fetchCart();
+
+        if (res.status === 200) {
+            this.setState({
+                data: res.data.data
+            });
+        }
+        console.log(this.state.data)    // print customers array
+
+    };
+
+    //Data Add
+    submitCart = async () => {
+        let formData = this.state.cartData;
+
+        let res = await CartService.postCart(formData);
+        if (res.status === 200) {
+            this.setState({
+                alert: true,
+                message: 'Cart Successfully Added',
+                severity: 'success',
+            });
+            this.clearFields();
+            //this.loadData();
+        } else {
+            this.setState({
+                alert: true,
+                message: res.response.data.message,
+                severity: 'error'
+            });
+        }
+    };
+
+     //Data Delete
+     deleteCart = async (id) => {
+        let params = {
+            id: id
+        }
+        let res = await CartService.deleteCart(params);
+        console.log(res)
+
+        if (res.status === 200) {
+            this.setState({
+                alert: true,
+                message: res.data.message,
+                severity: 'success'
+            });
+            //this.loadData();
+        } else {
+            this.setState({
+                alert: true,
+                message: res.data.message,
+                severity: 'error'
+            });
+        }
+    };
+
+    clearFields = () => {
+        this.setState({
+            cartData :{
+                userId: '',
+                date: '',
+                products: [
+                    {
+                        productId: '',
+                        quantity: ''
+                    }
+                ]
+            },
+        });
+    };
+
     render() {
         const { classes } = this.props;
         return ( 
             <>
-                <ValidatorForm ref="form" className="pt-2">
+                <ValidatorForm ref="form" className="pt-2" onSubmit={this.submitCart}>
                     <Grid className={classes.cart_container}>
                         <Grid container className="pt-2" spacing={2}>
                             <Grid item lg={12} xs={12} sm={12} md={12}
@@ -73,7 +159,7 @@ class Cart extends Component {
                                         //     formData.id = e.target.value
                                         //     this.setState({formData})
                                         // }}
-                                        validators={['required']}
+                                        // validators={['required']}
                                     />
                                 </Grid>
                             </Grid>
@@ -112,13 +198,13 @@ class Cart extends Component {
                                         maxRows={4}
                                         style={{ width: '40vw' }}
                                         label="Qty"
-                                        // value={this.state.formData.id}
+                                        // value={this.state.cartData.}
                                         // onChange={(e) => {
                                         //     let formData = this.state.formData
                                         //     formData.id = e.target.value
                                         //     this.setState({formData})
                                         // }}
-                                        validators={['required']}
+                                        // validators={['required']}
                                     />
                                 </Grid>
                             </Grid>

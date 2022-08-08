@@ -32,7 +32,7 @@ class Login extends Component {
         if (res.status === 200) {
             this.setState({
                 alert: true,
-                message: 'Product Successfully Added',
+                message: 'Login Successfully',
                 severity: 'success',
             });
             this.clearFields();
