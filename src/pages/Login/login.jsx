@@ -5,7 +5,7 @@ import { ValidatorForm } from "react-material-ui-form-validator";
 import { Button, Grid, TextField, Typography } from "@mui/material";
 import { Link } from "react-router-dom";
 import GDSESnackBar from "../../common/SnakBar/index";
-import LoginService from "../Service/LoginService"
+import LoginService from "../Service/LoginService";
 
 class Login extends Component {
     constructor(props) {
@@ -30,17 +30,19 @@ class Login extends Component {
 
         let res = await LoginService.postLogin(formData);
         if (res.status === 200) {
+
             this.setState({
                 alert: true,
                 message: 'Login Successfully',
                 severity: 'success',
             });
+
             this.clearFields();
             //this.loadData();
         } else {
             this.setState({
                 alert: true,
-                message: res.response.data.message,
+                message: 'Incorrect User Name or Password',
                 severity: 'error'
             });
         }
