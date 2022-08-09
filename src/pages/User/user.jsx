@@ -457,7 +457,7 @@ class User extends Component {
                                 {
                                     this.state.data.map((row) => (
                                         <TableRow>
-                                            <TableCell align="left">{row.name.firstname}</TableCell>
+                                            <TableCell align="left">{row}</TableCell>
                                             <TableCell align="left">{ }</TableCell>
                                             <TableCell align="left">{ }</TableCell>
                                             <TableCell align="left">{ }</TableCell>
