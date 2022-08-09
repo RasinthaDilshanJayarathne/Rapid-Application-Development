@@ -228,13 +228,13 @@ class Product extends Component {
                                     justifyContent="center" alignItems="center"
                                 >
                                     <Autocomplete
-                                        // onChange={(e, value, r) => {
-                                        //
-                                        //     let formData = this.state.formData
-                                        //     formData.fuelType = value.type
-                                        //     this.setState({formData})
-                                        //
-                                        // }}
+                                        onChange={(e, value, r) => {
+                                        
+                                            let formData = this.state.productData
+                                            formData.category = value.type
+                                            this.setState({formData})
+                                        
+                                        }}
                                         getOptionLabel={
                                             (option) => option.type
                                         }
